@@ -4,62 +4,14 @@
       <h3 class='panel-title'>Create Employee</h3>
     </div>
     <div class='panel-body'>
-      <div class="form-group">
-        <label for="fullName">Full Name</label>
+      <div class="form-group" [class.has-error]="fullNameControl.invalid && fullNameControl.touched">
+        <label for="fullName" class="control-label">Full Name</label>
         <input id="fullName" required name="fullName" [(ngModel)]="fullName" class="form-control" type="text"
           #fullNameControl="ngModel">
+          <span class="help-block" *ngIf="fullNameControl.invalid && fullNameControl.touched">
+            Full Name is required
+          </span>
       </div>
-      <table class="table table-dark">
-        <thead class="thead-light">
-          <tr>
-            <th colspan="3">fullNameControl fields</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>touched: {{fullNameControl.touched}}
-              <br />
-              untouched: {{fullNameControl.untouched}}
-            </td>
-            <td>
-              prinstine: {{fullNameControl.pristine}}
-              <br />
-              dirty:{{fullNameControl.dirty}}
-            </td>
-            <td>
-              valid: {{fullNameControl.valid}}
-              <br />
-              invalid:{{fullNameControl.invalid}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
-      <br />
-      <table class="table table-dark">
-        <thead class="thead-light">
-          <tr>
-            <th colspan="3">employeeForm fields</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>touched: {{employeeForm.touched}}
-              <br />
-              untouched: {{employeeForm.untouched}}
-            </td>
-            <td>
-              prinstine: {{employeeForm.pristine}}
-              <br />
-              dirty:{{employeeForm.dirty}}
-            </td>
-            <td>
-              valid: {{employeeForm.valid}}
-              <br />
-              invalid:{{employeeForm.invalid}}
-            </td>
-          </tr>
-        </tbody>
-      </table>
       <div class="form-group">
         <label for="email">Email</label>
         <input id="email" name="email" [(ngModel)]="email" class="form-control" type="text">
@@ -133,7 +85,7 @@
 
     </div>
     <div class='panel-footer'>
-      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Save</button>
     </div>
   </div>
 </form>
